@@ -4,8 +4,9 @@ require("dotenv").config();
 
 let config,arb,owner,inTrade,balances;
 const network = hre.network.name;
-if (network === 'aurora') config = require('./../config/aurora.json');
+if (network === 'aurora' || network === 'auroratest') config = require('./../config/aurora.json');
 if (network === 'fantom') config = require('./../config/fantom.json');
+if (network === 'mumbai') config = require('./../config/mumbai.json');
 
 console.log(`Loaded ${config.routes.length} routes`);
 
@@ -51,18 +52,22 @@ const lookForDualTrade = async () => {
   try {
     let tradeSize = balances[targetRoute.token1].balance;
     const amtBack = await arb.estimateDualDexTrade(targetRoute.router1, targetRoute.router2, targetRoute.token1, targetRoute.token2, tradeSize);
-    const multiplier = ethers.BigNumber.from(config.minBasisPointsPerTrade+10000);
-    const sizeMultiplied = tradeSize.mul(multiplier);
-    const divider = ethers.BigNumber.from(10000);
-    const profitTarget = sizeMultiplied.div(divider);
-    if (!config.routes.length > 0) {
-      fs.appendFile(`./data/${network}RouteLog.txt`, `["${targetRoute.router1}","${targetRoute.router2}","${targetRoute.token1}","${targetRoute.token2}"],`+"\n", function (err) {});
-    }
-    if (amtBack.gt(profitTarget)) {
-      await dualTrade(targetRoute.router1,targetRoute.router2,targetRoute.token1,targetRoute.token2,tradeSize);
-    } else {
-      await lookForDualTrade();
-    }
+  //   const multiplier = ethers.BigNumber.from(config.minBasisPointsPerTrade+10000);
+  //   const sizeMultiplied = tradeSize.mul(multiplier);
+  //   const divider = ethers.BigNumber.from(10000);
+  //   const profitTarget = sizeMultiplied.div(divider);
+  //   if (!config.routes.length > 0) {
+  //     fs.appendFile(`./data/${network}RouteLog.txt`, `["${targetRoute.router1}","${targetRoute.router2}","${targetRoute.token1}","${targetRoute.token2}"],`+"\n", function (err) {});
+  //   }
+  //   if (amtBack.gt(profitTarget)) {
+  //     // const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
+  //     // console.log(1)
+  //     // await sleep(500)
+  //     // console.log(2)
+  //     await dualTrade(targetRoute.router1,targetRoute.router2,targetRoute.token1,targetRoute.token2,tradeSize);
+  //   } else {
+  //     await lookForDualTrade();
+  //   }
   } catch (e) {
     console.log(e);
     await lookForDualTrade();	
@@ -112,7 +117,7 @@ const setup = async () => {
 
 const logResults = async () => {
   console.log(`############# LOGS #############`);
-    for (let i = 0; i < config.baseAssets.length; i++) {
+  for (let i = 0; i < config.baseAssets.length; i++) {
     const asset = config.baseAssets[i];
     const interface = await ethers.getContractFactory('WETH9');
     const assetToken = await interface.attach(asset.address);

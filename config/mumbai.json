@@ -1,5 +1,5 @@
 {
-  "arbContract": "0xBA5946EB171dAa5D856B1e888f273FeCE5c5d4B8",
+  "arbContract": "0x24D713060C4a685FD40752FD23Feb1C948362F20",
   "minBasisPointsPerTrade": 0,
   "routers": [
     { "dex": "trisolaris", "address": "0x2CB45Edb4517d5947aFdE3BEAbF95A582506858B" },
@@ -7,12 +7,8 @@
     { "dex": "auroraswap", "address": "0xA1B1742e9c32C7cAa9726d8204bD5715e3419861" }
   ],
   "baseAssets": [
-    { "sym": "weth","address": "0xC9BdeEd33CD01541e1eeD10f90519d2C06Fe3feB" },
-    { "sym": "wnear", "address": "0xC42C30aC6Cc15faC9bD938618BcaA1a1FaE8501d" },
-    { "sym": "usdt", "address": "0x4988a896b1227218e4A686fdE5EabdcAbd91571f" },
-    { "sym": "aurora", "address": "0x8BEc47865aDe3B172A928df8f990Bc7f2A3b9f79" },
-    { "sym": "atust", "address": "0x5ce9F0B6AFb36135b5ddBF11705cEB65E634A9dC" },
-    { "sym": "usdc", "address": "0xB12BFcA5A55806AaF64E99521918A4bf0fC40802" }
+    { "sym": "weth","address": "0xA6FA4fB5f76172d178d61B04b0ecd319C5d1C0aa" },
+    { "sym": "usdc", "address": "0x2535C860C77cdB93919b6231D12855B9f087Ff18" }
   ],
   "tokens": [
     {"sym": "HAK", "address": "0x5ac53f985ea80c6af769b9272f35f122201d0f56" },
@@ -71,6 +67,6 @@
     {"sym": "EMPYR", "address": "0xE9F226a228Eb58d408FdB94c3ED5A18AF6968fE1" }
   ],
   "routes": [
-    ["0xA1B1742e9c32C7cAa9726d8204bD5715e3419861","0xa3a1ef5ae6561572023363862e238afa84c72ef5","0x8BEc47865aDe3B172A928df8f990Bc7f2A3b9f79","0xb12bfca5a55806aaf64e99521918a4bf0fc40802"]
+    ["0xA1B1742e9c32C7cAa9726d8204bD5715e3419861","0xa3a1ef5ae6561572023363862e238afa84c72ef5","0xA6FA4fB5f76172d178d61B04b0ecd319C5d1C0aa","0x2535C860C77cdB93919b6231D12855B9f087Ff18"]
   ]
 }
